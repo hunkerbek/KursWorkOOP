@@ -1,8 +1,19 @@
-class Vacancy:
-    def __init__(self, title, sallary_from, sallary_to):
+from dict_convert import DictConvert
+
+
+class Vacancy(DictConvert):
+    def get_dict(self):
+        return {"title":self.title,
+                "url":self.url,
+                "sallary_to": self.sallary_to,
+                "sallary_from":self.sallary_from}
+
+
+    def __init__(self, title:str, sallary_from:int|None, sallary_to:int|None, url:str):
         self._title = title
         self._sallary_from = sallary_from
         self._sallary_to = sallary_to
+        self._url = url
     def __str__(self):
         return f'{self._title} от:{self._sallary_from} до:{self._sallary_to}'
 
@@ -11,15 +22,21 @@ class Vacancy:
         return str(self)
 
     @property
+    def url(self):
+        return self._url
+
+    @property
     def title(self):
         return self._title
 
     @property
     def sallary_from(self):
+        """Зарплата от"""
         return self._sallary_from
 
     @property
     def sallary_to(self):
+        """Зарплата до"""
         return self._sallary_to
 
 
